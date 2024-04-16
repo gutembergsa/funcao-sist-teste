@@ -17,6 +17,7 @@ namespace FI.AtividadeEntrevista.DAL
         /// Inclui um novo cliente
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
+        /// <returns>long int</returns>
         internal long Incluir(DML.Cliente cliente)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
@@ -40,9 +41,10 @@ namespace FI.AtividadeEntrevista.DAL
         }
 
         /// <summary>
-        /// Inclui um novo cliente
+        /// Consulta  cliente
         /// </summary>
-        /// <param name="cliente">Objeto de cliente</param>
+        /// <param name="Id">Id de cliente</param>
+        /// <returns>Objeto de cliente</returns>
         internal DML.Cliente Consultar(long Id)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
@@ -55,6 +57,11 @@ namespace FI.AtividadeEntrevista.DAL
             return cli.FirstOrDefault();
         }
 
+        /// <summary>
+        /// Verifica existencia de um cliente pelo CPF
+        /// </summary>
+        /// <param name="cliente">Objeto de cliente</param>
+        /// <returns>bool</returns>
         internal bool VerificarExistencia(string CPF)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
@@ -104,7 +111,7 @@ namespace FI.AtividadeEntrevista.DAL
         }
 
         /// <summary>
-        /// Inclui um novo cliente
+        /// Altera cliente
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
         internal void Alterar(DML.Cliente cliente)

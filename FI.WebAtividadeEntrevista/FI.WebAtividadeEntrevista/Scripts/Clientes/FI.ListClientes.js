@@ -5,10 +5,10 @@ $(document).ready(function () {
     if (table)
         $('#gridClientes').jtable({
             title: 'Clientes',
-            paging: true, //Enable paging
-            pageSize: 5, //Set page size (default: 10)
-            sorting: true, //Enable sorting
-            defaultSorting: 'Nome ASC', //Set default sorting
+            paging: true, 
+            pageSize: 5,
+            sorting: true,
+            defaultSorting: 'Nome ASC', 
             actions: {
                 listAction: urlClienteList,
             },
@@ -30,7 +30,6 @@ $(document).ready(function () {
             }
         });
 
-    //Load clientes list from server
     if (document.getElementById("gridClientes"))
         $('#gridClientes').jtable('load');
 })

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FI.AtividadeEntrevista.DML
 {
     /// <summary>
-    /// Classe de cliente que representa o registo na tabela Cliente do Banco de Dados
+    /// Classe de beneficiario que representa o registo na tabela Beneficiario do Banco de Dados
     /// </summary>
     public class Beneficiario
     {

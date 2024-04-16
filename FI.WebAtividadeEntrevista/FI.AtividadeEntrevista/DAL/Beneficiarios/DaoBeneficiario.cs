@@ -9,7 +9,7 @@ using FI.AtividadeEntrevista.DML;
 namespace FI.AtividadeEntrevista.DAL
 {
     /// <summary>
-    /// Classe de acesso a dados de Cliente
+    /// Classe de acesso a dados de Beneficiario
     /// </summary>
     internal class DaoBeneficiario : AcessoDados
     {

@@ -188,7 +188,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\BeneficiarioController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -282,7 +281,6 @@
     <Content Include="Scripts\Beneficiarios\FI.Beneficiarios.js" />
     <Content Include="Scripts\Utils\fetchPost.js" />
     <Content Include="Scripts\Utils\functions.js" />
-    <Content Include="Scripts\Utils\constants.js" />
     <Content Include="Scripts\Utils\globals.js" />
 
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

@@ -1594,7 +1594,7 @@ table th[class*="col-"] {
 .table.beneficiario .jtable > tfoot {
   background-color: white;
 }
-
+/*CUSTOM STYLE START - tabela de beneficiarios*/
 .table.beneficiario .jtable > thead > tr > th,
 .table.beneficiario .jtable > tbody > tr > th,
 .table.beneficiario .jtable > tfoot > tr > th,
@@ -1616,6 +1616,7 @@ table th[class*="col-"] {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+/*CUSTOM STYLE END - tabela de beneficiarios*/
 @media (max-width: 768px) {
   .table-responsive {
     width: 100%;
@@ -2394,10 +2395,13 @@ fieldset[disabled] .btn-link:focus {
   margin-top: 5px;
 }
 
+/*CUSTOM STYLE START - botao acesso modalde beneficiarios*/
 .beneficiario-btn {
   border: 1px solid black;
   background-color: white;
 }
+/*CUSTOM STYLE END - botao acesso modalde beneficiarios*/
+
 
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,

@@ -10,9 +10,9 @@ namespace FI.AtividadeEntrevista.BLL
     public class BoBeneficiario
     {
         /// <summary>
-        /// Consulta o cliente pelo id
+        /// Consulta o beneficiario pelo id
         /// </summary>
-        /// <param name="id">id do cliente</param>
+        /// <param name="id">id do beneficiario</param>
         /// <returns></returns>
         public DML.Beneficiario Consultar(long id)
         {
@@ -21,7 +21,7 @@ namespace FI.AtividadeEntrevista.BLL
         }
 
         /// <summary>
-        /// Lista os clientes
+        /// Lista os beneficiario
         /// </summary>
         public List<DML.Beneficiario> Listar()
         {
@@ -30,7 +30,7 @@ namespace FI.AtividadeEntrevista.BLL
         }
 
         /// <summary>
-        /// Lista os clientes
+        /// Lista os beneficiario
         /// </summary>
         public List<DML.Beneficiario> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, int IDCLIENTE, out int qtd)
         {
@@ -51,7 +51,7 @@ namespace FI.AtividadeEntrevista.BLL
         /// <summary>
         /// Altera um cliente
         /// </summary>
-        /// <param name="cliente">Objeto de cliente</param>
+        /// <param name="cliente">Objeto de beneficiario</param>
         public void Alterar(DML.Beneficiario beneficiario)
         {
             DAL.DaoBeneficiario cli = new DAL.DaoBeneficiario();
@@ -84,7 +84,7 @@ namespace FI.AtividadeEntrevista.BLL
         /// VerificaExistencia
         /// </summary>
         /// <param name="CPF"></param>
-        /// <returns>DataRowCollection</returns>
+        /// <returns>bool</returns>
         public bool VerificarExistencia(string CPF, bool overload)
         {
             DAL.DaoBeneficiario cli = new DAL.DaoBeneficiario();
