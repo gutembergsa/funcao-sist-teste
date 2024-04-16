@@ -20,7 +20,7 @@ $(document).ready(function () {
         const { isValid, Message } = await IncluirCPFCheck(BeneficiariosList_GLOBAL , newClienteCPF)
 
         if (!isValid) {
-            ModalDialog("Ocorreu um erro", Message);
+            ModalDialog("Ocorreu um erro", Message, backToPreviosPageModalCallback);
             return 
         }
 
@@ -50,10 +50,10 @@ $(document).ready(function () {
         if (BeneficiariosList_GLOBAL .length) {
             const { Message: rIncluirBeneficiario, Success } = await BeneficiarioIncluir(BeneficiariosList_GLOBAL , Id)
             if (rIncluirBeneficiario?.length && Success) {
-                ModalDialog("Sucesso!", `${response}<br/>${rIncluirBeneficiario}` )    
+                ModalDialog("Sucesso!", `${response}<br/>${rIncluirBeneficiario}`, backToPreviosPageModalCallback)    
             }
             else {
-                ModalDialog("Ocorreu um erro", rIncluirBeneficiario);
+                ModalDialog("Ocorreu um erro", rIncluirBeneficiario, backToPreviosPageModalCallback);
             }
             // $.ajax({
             //     url: `/Beneficiario/Incluir?Id=${Id}`,
@@ -78,10 +78,10 @@ $(document).ready(function () {
             if (rExcluirBeneficiario?.length && Success) {
                 BeneficiariosToExcludeList_GLOBAL = []
                 targetProxy.BeneficiariosList_GLOBAL = BeneficiariosList_GLOBAL ;
-                ModalDialog("Sucesso!", `${response}<br/>${rExcluirBeneficiario}` );
+                ModalDialog("Sucesso!", `${response}<br/>${rExcluirBeneficiario}`, backToPreviosPageModalCallback);
             }
             else {
-                ModalDialog("Ocorreu um erro", rExcluirBeneficiario);
+                ModalDialog("Ocorreu um erro", rExcluirBeneficiario, backToPreviosPageModalCallback);
             }
             // for (const { id } in BeneficiariosToExcludeList_GLOBAL) {
             //     const rExcluirBeneficiario = await BeneficiarioExcluir(id)
@@ -111,7 +111,7 @@ $(document).ready(function () {
         }
         if (!BeneficiariosToExcludeList_GLOBAL.length && !BeneficiariosList_GLOBAL .length){
             BeneficiariosToEditList_GLOBAL = []
-            ModalDialog("Sucesso!", response);
+            ModalDialog("Sucesso!", response, backToPreviosPageModalCallback);
         }
         // $("#formCadastro")[0].reset();
         // const newClienteCPF = $(this).find("#CPF").val()

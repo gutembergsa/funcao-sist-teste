@@ -1,6 +1,4 @@
-﻿const modalCallback = () => window.history.back();
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     CurrentClienteId_GLOBAL = idCliente
     targetProxy.CurrentClienteId_GLOBAL = idCliente
     IsEditCliente_GLOBAL = true
@@ -99,10 +97,10 @@ $(document).ready(function () {
             const { Message: rAlterarBeneficiario, Success } = await BeneficiarioAlterar(BeneficiariosToEditsListFiltered, idCliente)
             if (rAlterarBeneficiario?.length && Success) {
                 BeneficiariosToEditList_GLOBAL = []
-                ModalDialog("Sucesso!", `${r}<br/>${rAlterarBeneficiario}`, modalCallback)    
+                ModalDialog("Sucesso!", `${r}<br/>${rAlterarBeneficiario}`, backToPreviosPageModalCallback)    
             }
             else {
-                ModalDialog("Ocorreu um erro", rAlterarBeneficiario, modalCallback);                        
+                ModalDialog("Ocorreu um erro", rAlterarBeneficiario, backToPreviosPageModalCallback);                        
             }
             // $.ajax({
             //     url: `/Beneficiario/Alterar?Id=${id}`,
@@ -125,10 +123,10 @@ $(document).ready(function () {
         if (BeneficiariosToIncludeListFiltered.length) {
             const { Message: rIncluirBeneficiario, Success } = await BeneficiarioIncluir(BeneficiariosToIncludeListFiltered, idCliente)
             if (rIncluirBeneficiario?.length && Success) {
-                ModalDialog("Sucesso!", `${r}<br/>${rIncluirBeneficiario}`, modalCallback)    
+                ModalDialog("Sucesso!", `${r}<br/>${rIncluirBeneficiario}`, backToPreviosPageModalCallback)    
             }
             else {
-                ModalDialog("Ocorreu um erro", rIncluirBeneficiario, modalCallback);
+                ModalDialog("Ocorreu um erro", rIncluirBeneficiario, backToPreviosPageModalCallback);
             }
             // $.ajax({
             //     url: `/Beneficiario/Incluir?Id=${id}`,
@@ -155,7 +153,7 @@ $(document).ready(function () {
             if (rExcluirBeneficiario?.length && Success) {
                 BeneficiariosToExcludeList_GLOBAL = []
                 targetProxy.BeneficiariosList_GLOBAL = BeneficiariosList_GLOBAL ;
-                ModalDialog("Sucesso!", `${r}<br/>${rExcluirBeneficiario}`, modalCallback);
+                ModalDialog("Sucesso!", `${r}<br/>${rExcluirBeneficiario}`, backToPreviosPageModalCallback);
             }
             else {
                 ModalDialog("Ocorreu um erro", rExcluirBeneficiario);
@@ -187,7 +185,7 @@ $(document).ready(function () {
         }
         if (!BeneficiariosToExcludeList_GLOBAL.length && !BeneficiariosToEditsListFiltered.length && !BeneficiariosToIncludeListFiltered.length){
             BeneficiariosToEditList_GLOBAL = []
-            ModalDialog("Sucesso!", r, modalCallback);
+            ModalDialog("Sucesso!", r, backToPreviosPageModalCallback);
         }
 
         console.log("Alterar", { BeneficiariosList_GLOBAL , BeneficiariosToIncludeListFiltered, BeneficiariosToEditList_GLOBAL, BeneficiariosToEditsListFiltered, BeneficiariosToExcludeList_GLOBAL});

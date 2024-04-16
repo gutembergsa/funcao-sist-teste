@@ -1,28 +1,4 @@
-﻿//TODO: Criar id temporario para itens que não foram salvos no db; DONE
-//TODO Solucionar (Entender) o problema de altera o  alterar um beneficiario que ainda nao foi salvo; DONE
-//TODO Adicionar callback para exclusão dos beneficiarios da lista; DONE
-//TODO: Corrigir problemas ao adicionar novos beneficiarios durante a alteração do cliente; DONE
-//TODO: Adicionar validação dos CPF Antes de salvar clientes e beneficiarios; DONE
-//TODO: Adicionar trava efetiva para os requests em caso alteração sem dados; DONE
-//TODO: Adicionar scroll na lista de beneficiarios DONE
-//TODO: Corrigir lista de beneficiario esta mantendo dados da ultima lista carreagda; DONE
-//TODO: Adicionar as globais que faltam; DONE
-//TODO: Adicionar cleanup da lista de beneficiarios quando incluir novo cliente; DONE
-//TODO: Alterar exluir para chamar controller apenas uma vez para todos os valores; DONE
-//TODO: Corrigi lista de beneficiarios sendo removida toda vez que abre o modal de beneficiarios
-// deve limpar apenas na primeira vez que carrega a pagina para limpar dados que possam estar salvos DONE
-//TODO: Adicionar metodo fetchPost para Incluir Cliente e Alterar Cliente DONE
-//TODO: Organizar o codigo jquery DONE
-
-//TODO: Organizar interface backend - frontend DONE
-//TODO Revisar logica para incluir beneficiario com mesmo CPF para em diferentes clientes DONE
-//TODO: centralizar mensagens do modal de erro
-
-//TODO: Corrigir valor de cpf que esta sendo inserido na lista de beneficiarios; ONHOLD - LOW PRIO - NEED MORE TEST
-//Apos reload da pagina em alguna casos o cpf esta ficando com valores incorretos;
-//TODO: Alterar alterar para chamar controller apenas uma vez para todos os valores; LOW PRIO
-
-$(document).ready(function () {   
+﻿$(document).ready(function () {   
     $('#beneficiarioButton').on("click", function () {
         $("#beneficiarioModal").on("shown.bs.modal", function () {
             const table = document.getElementById("gridBeneficiarios")

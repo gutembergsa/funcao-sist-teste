@@ -221,6 +221,10 @@ function alterar(idBeneficiario){
 }
 
 //MODAL
+function backToPreviosPageModalCallback(){  
+    window.history.back();
+}
+
 function ModalDialog(titulo, texto, closeCallback = undefined) {
     var random = Math.random().toString().replace('.', '');
     var texto = '<div id="' + random + '" class="modal fade">                                                               ' +
@@ -312,3 +316,4 @@ function ModalBeneficiario(closeCallback = undefined) {
         closeCallback?.()
     })
 }
+
