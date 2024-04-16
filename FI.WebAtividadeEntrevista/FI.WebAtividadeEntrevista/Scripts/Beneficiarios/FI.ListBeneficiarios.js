@@ -37,7 +37,6 @@
                     },
                 });
             }
-            //Load beneficiarios list from server
             if (document.getElementById("gridBeneficiarios")) {
                 $('#gridBeneficiarios').jtable('load');
             }

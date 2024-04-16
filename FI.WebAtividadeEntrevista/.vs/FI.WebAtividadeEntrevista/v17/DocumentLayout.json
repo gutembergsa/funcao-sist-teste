@@ -72,8 +72,7 @@
               "RelativeToolTip": "FI.WebAtividadeEntrevista\\Scripts\\Beneficiarios\\FI.ListBeneficiarios.js",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAwCMAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-04-13T15:57:23.137Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-13T15:57:23.137Z"
             },
             {
               "$type": "Document",
@@ -85,8 +84,7 @@
               "RelativeToolTip": "FI.WebAtividadeEntrevista\\Controllers\\BeneficiarioController.cs",
               "ViewState": "AQIAACkAAAAAAAAAAAAlwEcAAABhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T00:19:39.762Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-13T00:19:39.762Z"
             },
             {
               "$type": "Document",
@@ -98,8 +96,7 @@
               "RelativeToolTip": "FI.WebAtividadeEntrevista\\Controllers\\ClienteController.cs",
               "ViewState": "AQIAADEAAAAAAAAAAAAlwDgAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T00:14:17.639Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-13T00:14:17.639Z"
             },
             {
               "$type": "Document",
@@ -111,8 +108,7 @@
               "RelativeToolTip": "FI.AtividadeEntrevista\\BLL\\BoBeneficiario.cs",
               "ViewState": "AQIAADwAAAAAAAAAAAAjwFoAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T00:05:41.801Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-13T00:05:41.801Z"
             }
           ]
         }

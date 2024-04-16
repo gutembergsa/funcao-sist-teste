@@ -32,13 +32,9 @@ $(document).ready(function () {
 
         const data = await ClienteIncluir(body, newClienteCPF)
 
-        console.log({ data });
-
         const { Id = undefined, Message: response = undefined } = data
 
         if (!Id) return 
-
-        console.log("Incluir", {BeneficiariosToEditList_GLOBAL, BeneficiariosToExcludeList_GLOBAL});
 
         if (BeneficiariosList_GLOBAL .length) {
             const { Message: rIncluirBeneficiario, Success } = await BeneficiarioIncluir(BeneficiariosList_GLOBAL , Id)
@@ -50,7 +46,6 @@ $(document).ready(function () {
             }
         }
         if (BeneficiariosToExcludeList_GLOBAL.length) {
-            console.log("Remove from database");
             const { Message: rExcluirBeneficiario, Success } = await BeneficiarioExcluir(BeneficiariosToExcludeList_GLOBAL)
             if (rExcluirBeneficiario?.length && Success) {
                 BeneficiariosToExcludeList_GLOBAL = []

@@ -52,7 +52,6 @@ async function BeneficiarioAlterar(BeneficiariosToEditsListFiltered, IdCliente) 
         `/Beneficiario/Alterar?Id=${IdCliente}`, 
         JSON.stringify(BeneficiariosToEditsListFiltered),
     )
-    console.log({ data });
     return data
 }
 

@@ -4,7 +4,6 @@
     IsEditCliente_GLOBAL = true
 
     if (obj) {
-        console.log({ obj });
         $('#formCadastro [id]').each(function() {
             $(this).val(obj[this.id]);
         });
@@ -36,8 +35,6 @@
             "CPF": $(this).find("#CPF").val(),
             "Id": idCliente
         }
-
-        console.log({obj});
 
         const { 
             Success = undefined, 

@@ -29,35 +29,7 @@ function AlterarCPFCheckSetup(newClienteCPF, oldClienteCPF) {
                 CPF: newClienteCPFLocal,
             })
         }
-        console.log("cliente",{ CPFList, newClienteCPFLocal, oldClienteCPFLocal });
     });
-    // $('#formCadastro #CPF').on("change", function(e) {
-    //     newClienteAlterarCPF = e.target.value
-    // });
-    
-    // $('#formCadastro :input').on('change input', function() {
-    //     if (!newClienteCPF || newClienteCPF === oldClienteCPF) {
-    //         return
-    //     }
-
-    //     if (CPFList.length) {
-    //         CPFList
-    //             .filter(({ Type }) => Type !== "cliente")
-    //             .push({ 
-    //                 Type: "cliente",
-    //                 CPF: newClienteCPF,
-    //             })
-    //         return
-    //     }
-
-    //     CPFList
-    //         .push({ 
-    //             Type: "cliente",
-    //             CPF: newClienteCPF,
-    //         })
-            
-    //     console.log("AlterarCPFCheckSetup",{ CPFList, newClienteCPF, oldClienteCPF });
-    // });
 }
 
 async function AlterarCPFCheck(BeneficiariosList, BeneficiariosToEditList) {
@@ -78,35 +50,9 @@ async function AlterarCPFCheck(BeneficiariosList, BeneficiariosToEditList) {
 
     const data = await fetchPostData("/Services/CheckCPFList", JSON.stringify(CPFList))
     return data
-    // $.ajax({
-    //     url: `/Services/CheckCPFList`,
-    //     method: "POST",
-    //     contentType: 'application/json',
-    //     data: JSON.stringify(CPFList),
-    //     success: function(data) { 
-    //         console.log({data});
-    //      },
-    //     error: function(xhr) {
-    //         console.error({xhr});
-    //     }
-    // });
 }
 
 async function IncluirCPFCheck(BeneficiariosList, newClienteCPF) {
-    // CPFList = [
-    //     ...CPFList, 
-    //     ...BeneficiariosList
-    //         .filter(({ Id, IDCLIENTE = undefined }) => {
-    //             return BeneficiariosToEditList.find(id => id === Id) !== undefined || IDCLIENTE === undefined
-    //         })
-    //         .map(({ CPF, IDCLIENTE = undefined }) => {
-    //             return { 
-    //                 Type: "beneficiario",
-    //                 CPF,
-    //                 IDCLIENTE
-    //             }
-    //         })
-    // ]
     CPFList = BeneficiariosList.map(({CPF, IDCLIENTE = undefined}) => {
         return { 
              Type: "beneficiario",
@@ -120,29 +66,14 @@ async function IncluirCPFCheck(BeneficiariosList, newClienteCPF) {
      })
 
     const data = await fetchPostData("/Services/CheckCPFList", JSON.stringify(CPFList))
-
-    console.log("IncluirCPFCheck", { CPFList, data });
-
     return data
-    // $.ajax({
-    //     url: `/Services/CheckCPFList`,
-    //     method: "POST",
-    //     contentType: 'application/json',
-    //     data: JSON.stringify(CPFList),
-    //     success: function(data) { 
-    //         console.log({data});
-    //      },
-    //     error: function(xhr) {
-    //         console.error({xhr});
-    //     }
-    // });
-
 }
 
 //BENEFICIARIO LOCAL CRUD
 function incluir() {
     const nome =  document.getElementById("Nome-beneficiario")
     const CPF =  document.getElementById("CPF-beneficiario")
+
     if (!nome.value || !CPF.value) {
         return 
     }
@@ -158,22 +89,16 @@ function incluir() {
 
     if (!cpfAlreadyExist) {
         BeneficiariosList_GLOBAL.push(modelData)
-        // HasChangedBeneficiariosList_GLOBAL = true
         targetProxy.BeneficiariosList_GLOBAL = BeneficiariosList_GLOBAL
 
-        console.log({modelData, BeneficiariosList_GLOBAL});
-
-
-        $("#formCadastroBeneficiario")[0].reset();   
+        const form =  document.getElementById("formCadastroBeneficiario")
+        form.reset();   
     }
 }
 
 function excluirSetup(id) {
     if (!isNaN(id)) {
-
         BeneficiariosList_GLOBAL = BeneficiariosList_GLOBAL.filter(value =>  value.Id !== id)
-        // HasChangedBeneficiariosList_GLOBAL = true
-
         targetProxy.BeneficiariosList_GLOBAL = BeneficiariosList_GLOBAL
         BeneficiariosToExcludeList_GLOBAL.push(id)
     }
