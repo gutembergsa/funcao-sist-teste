@@ -65,33 +65,7 @@ async function BeneficiarioExcluir(IdBeneficiarioList) {
 
 //CLIENTE
 async function ClienteIncluir(formData) {
-    return await fetchPostData("/Cliente/Incluir", JSON.stringify(formData));
-    // $.ajax({
-    //     url: urlPost,
-    //     method: "POST",
-    //     data: {
-    //         "NOME": $(this).find("#Nome").val(),
-    //         "CEP": $(this).find("#CEP").val(),
-    //         "Email": $(this).find("#Email").val(),
-    //         "Sobrenome": $(this).find("#Sobrenome").val(),
-    //         "Nacionalidade": $(this).find("#Nacionalidade").val(),
-    //         "Estado": $(this).find("#Estado").val(),
-    //         "Cidade": $(this).find("#Cidade").val(),
-    //         "Logradouro": $(this).find("#Logradouro").val(),
-    //         "Telefone": $(this).find("#Telefone").val(),
-    //         "CPF": newClienteCPF
-    //     },
-    //     error:
-    //     function (r) {                
-    //         if (r.status == 400)
-    //             ModalDialog("Ocorreu um erro", r.responseJSON);
-    //         else if (r.status == 500)
-    //             ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
-    //     },
-    //     success:
-
-    // });
-}
+    return await fetchPostData("/Cliente/Incluir", JSON.stringify(formData));}
 
 async function ClienteAlterar(formData) {
     return await fetchPostData("/Cliente/Alterar", JSON.stringify(formData));;
