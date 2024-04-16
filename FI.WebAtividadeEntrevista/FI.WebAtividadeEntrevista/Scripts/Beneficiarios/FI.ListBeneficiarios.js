@@ -5,20 +5,27 @@
 //TODO: Adicionar validação dos CPF Antes de salvar clientes e beneficiarios; DONE
 //TODO: Adicionar trava efetiva para os requests em caso alteração sem dados; DONE
 //TODO: Adicionar scroll na lista de beneficiarios DONE
+//TODO: Corrigir lista de beneficiario esta mantendo dados da ultima lista carreagda; DONE
+//TODO: Adicionar as globais que faltam; DONE
+//TODO: Adicionar cleanup da lista de beneficiarios quando incluir novo cliente; DONE
+//TODO: Alterar exluir para chamar controller apenas uma vez para todos os valores; DONE
+//TODO: Corrigi lista de beneficiarios sendo removida toda vez que abre o modal de beneficiarios
+// deve limpar apenas na primeira vez que carrega a pagina para limpar dados que possam estar salvos DONE
+//TODO: Adicionar metodo fetchPost para Incluir Cliente e Alterar Cliente DONE
+//TODO: Organizar o codigo jquery DONE
 
-//TODO: Corrigir lista de beneficiario esta mantendo dados da ultima lista carreagda; DONE - NEED MORE TEST
-//TODO: Adicionar as globais que faltam;
-//TODO: Adicionar cleanup da lista de beneficiarios quando incluir novo cliente;
-//TODO: Alterar exluir para chamar controller apenas uma vez para todos os valores;
+//TODO: Organizar interface backend - frontend DONE
+//TODO Revisar logica para incluir beneficiario com mesmo CPF para em diferentes clientes DONE
+//TODO: centralizar mensagens do modal de erro
+
 //TODO: Corrigir valor de cpf que esta sendo inserido na lista de beneficiarios; ONHOLD - LOW PRIO - NEED MORE TEST
+//Apos reload da pagina em alguna casos o cpf esta ficando com valores incorretos;
 //TODO: Alterar alterar para chamar controller apenas uma vez para todos os valores; LOW PRIO
-//TODO: Organizar o codigo jquery 
 
 $(document).ready(function () {   
     $('#beneficiarioButton').on("click", function () {
         $("#beneficiarioModal").on("shown.bs.modal", function () {
             const table = document.getElementById("gridBeneficiarios")
-    
             if (table){
                 $('#gridBeneficiarios').jtable({
                     paging: false,
@@ -63,6 +70,12 @@ $(document).ready(function () {
             IsEditBeneficiario_GLOBAL = false
             $("#formCadastroBeneficiario")[0].reset();
         })
+        // if (!IsEditCliente_GLOBAL) {
+        //     CurrentClienteId_GLOBAL = null
+        //     BeneficiariosList_GLOBAL = []
+        //     SetList();
+        // }
+        ModalBeneficiario()
     })    
 })
 

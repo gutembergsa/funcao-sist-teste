@@ -1,34 +1,63 @@
 //CPF VALIDATION
 var CPFList = []
+let newClienteCPFLocal 
+let oldClienteCPFLocal
 
 function AlterarCPFCheckSetup(newClienteCPF, oldClienteCPF) {
+    newClienteCPFLocal = newClienteCPF
+    oldClienteCPFLocal = oldClienteCPF
+
     $('#formCadastro #CPF').on("change", function(e) {
-        newClienteCPF = e.target.value
+        newClienteCPFLocal = e.target.value
     });
-    
     $('#formCadastro :input').on('change input', function() {
-        if (!newClienteCPF || newClienteCPF === oldClienteCPF) {
+        if (!newClienteCPFLocal || newClienteCPFLocal === oldClienteCPFLocal) {
             return
         }
-
         if (CPFList.length) {
             CPFList
                 .filter(({ Type }) => Type !== "cliente")
                 .push({ 
                     Type: "cliente",
-                    CPF: newClienteCPF,
+                    CPF: newClienteCPFLocal,
                 })
-            return
         }
-
-        CPFList
+        else {
+            CPFList
             .push({ 
                 Type: "cliente",
-                CPF: newClienteCPF,
+                CPF: newClienteCPFLocal,
             })
-            
-        console.log("AlterarCPFCheckSetup",{ CPFList, newClienteCPF, oldClienteCPF });
+        }
+        console.log("cliente",{ CPFList, newClienteCPFLocal, oldClienteCPFLocal });
     });
+    // $('#formCadastro #CPF').on("change", function(e) {
+    //     newClienteAlterarCPF = e.target.value
+    // });
+    
+    // $('#formCadastro :input').on('change input', function() {
+    //     if (!newClienteCPF || newClienteCPF === oldClienteCPF) {
+    //         return
+    //     }
+
+    //     if (CPFList.length) {
+    //         CPFList
+    //             .filter(({ Type }) => Type !== "cliente")
+    //             .push({ 
+    //                 Type: "cliente",
+    //                 CPF: newClienteCPF,
+    //             })
+    //         return
+    //     }
+
+    //     CPFList
+    //         .push({ 
+    //             Type: "cliente",
+    //             CPF: newClienteCPF,
+    //         })
+            
+    //     console.log("AlterarCPFCheckSetup",{ CPFList, newClienteCPF, oldClienteCPF });
+    // });
 }
 
 async function AlterarCPFCheck(BeneficiariosList, BeneficiariosToEditList) {
@@ -48,9 +77,6 @@ async function AlterarCPFCheck(BeneficiariosList, BeneficiariosToEditList) {
     ]
 
     const data = await fetchPostData("/Services/CheckCPFList", JSON.stringify(CPFList))
-
-    console.log("AlterarCPFCheck", { CPFList, data });
-    CPFList = []
     return data
     // $.ajax({
     //     url: `/Services/CheckCPFList`,
@@ -64,7 +90,6 @@ async function AlterarCPFCheck(BeneficiariosList, BeneficiariosToEditList) {
     //         console.error({xhr});
     //     }
     // });
-
 }
 
 async function IncluirCPFCheck(BeneficiariosList, newClienteCPF) {
@@ -167,7 +192,6 @@ function alterarSetup(idBeneficiario, cpfBeneficiario, nomeBeneficiario){
     IsEditBeneficiario_GLOBAL = true
 
     Beneficiario_GLOBAL = { id: idBeneficiario, cpf: cpfBeneficiario, nome: nomeBeneficiario }
-
 }
 
 function alterar(idBeneficiario){
@@ -197,7 +221,7 @@ function alterar(idBeneficiario){
 }
 
 //MODAL
-function ModalDialog(titulo, texto) {
+function ModalDialog(titulo, texto, closeCallback = undefined) {
     var random = Math.random().toString().replace('.', '');
     var texto = '<div id="' + random + '" class="modal fade">                                                               ' +
         '        <div class="modal-dialog">                                                                                 ' +
@@ -219,9 +243,13 @@ function ModalDialog(titulo, texto) {
 
     $('body').append(texto);
     $('#' + random).modal('show');
+
+    $(`#${random}`).on("hidden.bs.modal", function () {
+        closeCallback?.()
+    })
 }
 
-function ModalBeneficiario() {
+function ModalBeneficiario(closeCallback = undefined) {
     var texto = `
         <div id="beneficiarioModal" class="modal fade">
             <div class="modal-dialog">
@@ -280,4 +308,7 @@ function ModalBeneficiario() {
     });
 
     $('#beneficiarioModal').modal('show');
+    $('#beneficiarioModal').on("hidden.bs.modal", function () {
+        closeCallback?.()
+    })
 }

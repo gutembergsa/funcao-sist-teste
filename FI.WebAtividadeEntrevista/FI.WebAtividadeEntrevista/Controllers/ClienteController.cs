@@ -26,15 +26,6 @@ namespace WebAtividadeEntrevista.Controllers
         {
             BoCliente bo = new BoCliente();
 
-            bool CPFAlreadyExist = bo.VerificarExistencia(model.CPF);
-            bool CPFIsValid = bo.VerificarValidade(model.CPF);
-
-            if (CPFAlreadyExist || !CPFIsValid)
-            {
-                Response.StatusCode = 400;
-                return Json(string.Join(Environment.NewLine, "CPF invalido"));
-            }
-
             if (!this.ModelState.IsValid)
             {
                 List<string> erros = (from item in ModelState.Values
@@ -43,7 +34,6 @@ namespace WebAtividadeEntrevista.Controllers
                 Response.StatusCode = 400;
                 return Json(string.Join(Environment.NewLine, erros));
             }
-
 
             model.Id = bo.Incluir(new Cliente()
             {
@@ -59,22 +49,13 @@ namespace WebAtividadeEntrevista.Controllers
                 CPF = model.CPF
             });
 
-            return Json(new { r = "Cadastro efetuado com sucesso", Id = model.Id });
+            return Json(new { Message = "Cadastro efetuado com sucesso", Id = model.Id });
         }
 
         [HttpPost]
-        public JsonResult Alterar(ClienteModel model, string currentCPF)
+        public JsonResult Alterar(ClienteModel model)
         {
             BoCliente bo = new BoCliente();
-
-            bool CPFAlreadyExist = bo.VerificarExistencia(model.CPF);
-            bool CPFIsValid = bo.VerificarValidade(model.CPF);
-
-            if (!CPFIsValid || CPFAlreadyExist && currentCPF != model.CPF)
-            {
-                Response.StatusCode = 400;
-                return Json(string.Join(Environment.NewLine, "CPF invalido"));
-            }
 
             if (!this.ModelState.IsValid)
             {
@@ -101,11 +82,11 @@ namespace WebAtividadeEntrevista.Controllers
                 CPF = model.CPF
             });
 
-            return Json("Cadastro alterado com sucesso");
+            return Json(new { Message = "Cadastro alterado com sucesso", Success = true });
         }
 
         [HttpGet]
-        public ActionResult Alterar(long id, string CPF)
+        public ActionResult Alterar(long id)
         {
             BoCliente bo = new BoCliente();
             Cliente cliente = bo.Consultar(id);
@@ -127,8 +108,6 @@ namespace WebAtividadeEntrevista.Controllers
                     Telefone = cliente.Telefone,
                     CPF = cliente.CPF
                 };
-
-
             }
 
             return View(model);

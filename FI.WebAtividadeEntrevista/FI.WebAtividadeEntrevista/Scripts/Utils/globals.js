@@ -14,3 +14,4 @@ var BeneficiariosToEditList_GLOBAL = []
 //FLAGS
 var IsEditBeneficiario_GLOBAL = false
 var IsEditCliente_GLOBAL = false
+var formIsFilled_GLOBAL = false

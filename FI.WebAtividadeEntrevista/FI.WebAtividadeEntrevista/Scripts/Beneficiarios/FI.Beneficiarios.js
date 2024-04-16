@@ -124,13 +124,14 @@ async function GetList() {
 //     $('#beneficiarioModal').modal('show');
 // }
 
+
 $(document).ready(function () {
-    $('#beneficiarioButton').on("click", () => {
-        if (!IsEditCliente_GLOBAL) {
-            CurrentClienteId_GLOBAL = null
-            BeneficiariosList_GLOBAL = []
-            SetList();
-        }
-        ModalBeneficiario()
-    });
+    // $('#beneficiarioButton').on("click", () => {
+    //     if (!IsEditCliente_GLOBAL) {
+    //         CurrentClienteId_GLOBAL = null
+    //         BeneficiariosList_GLOBAL = []
+    //         SetList();
+    //     }
+    //     ModalBeneficiario()
+    // });
 })

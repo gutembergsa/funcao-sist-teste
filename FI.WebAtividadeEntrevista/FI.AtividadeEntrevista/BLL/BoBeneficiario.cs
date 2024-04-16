@@ -90,45 +90,5 @@ namespace FI.AtividadeEntrevista.BLL
             DAL.DaoBeneficiario cli = new DAL.DaoBeneficiario();
             return cli.VerificarExistencia(CPF, overload);
         }
-
-        /// <summary>
-        /// VerificarValidade
-        /// </summary>
-        /// <param name="CPF"></param>
-        /// <returns>bool</returns>
-        public bool VerificarValidade(string CPF)
-        {
-            if (string.IsNullOrWhiteSpace(CPF))
-            {
-                return false;
-            }
-
-            CPF = CPF.Replace(".", "").Replace("-", "");
-
-            if (CPF.Length != 11 || CPF.Distinct().Count() == 1)
-            {
-                return false;
-            }
-
-            int[] factors1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-            int[] factors2 = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-
-            Func<string, int, int> calculateDigit = (CPFString, length) =>
-            {
-                int sum = 0;
-                for (int i = 0; i < length; i++)
-                {
-                    sum += int.Parse(CPFString[i].ToString()) * (length + 1 - i);
-                }
-                int remainder = sum % 11;
-                return remainder < 2 ? 0 : 11 - remainder;
-            };
-
-            int digit1 = calculateDigit(CPF, 9);
-            int digit2 = calculateDigit(CPF, 10);
-
-            return int.Parse(CPF[9].ToString()) == digit1 && int.Parse(CPF[10].ToString()) == digit2;
-        }
-
     }
 }

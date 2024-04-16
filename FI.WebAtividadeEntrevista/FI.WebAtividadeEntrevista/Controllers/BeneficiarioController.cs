@@ -48,22 +48,10 @@ namespace WebAtividadeEntrevista.Controllers
         {
             try
             {
-
                 BoBeneficiario bo = new BoBeneficiario();
 
                 foreach (var model in models)
                 {
-                    List<FI.AtividadeEntrevista.DML.Beneficiario> CPFAlreadyExist = bo.VerificarExistencia(model.CPF);
-                    bool CPFIsValid = bo.VerificarValidade(model.CPF);
-
-                    bool CPFFromSameCliente = CPFAlreadyExist.Any(obj => obj.IDCLIENTE == Id);
-
-                    if (!CPFIsValid || CPFFromSameCliente)
-                    {
-                        Response.StatusCode = 400;
-                        return Json(string.Join(Environment.NewLine, "CPF de beneficario(a) " + model.Nome + " é invalido"));
-                    }
-
                     if (!this.ModelState.IsValid)
                     {
                         List<string> erros = (from item in ModelState.Values
@@ -81,9 +69,7 @@ namespace WebAtividadeEntrevista.Controllers
                     });
                 }
 
-                //return Json(models);
-                return Json("Beneficiario cadastrado com sucesso");
-
+                return Json(new { Message = "Beneficiario cadastrado com sucesso", Success = true });
             }
             catch (Exception ex)
             {
@@ -96,22 +82,10 @@ namespace WebAtividadeEntrevista.Controllers
         {
             try
             {
-
                 BoBeneficiario bo = new BoBeneficiario();
 
                 foreach (var model in models)
                 {
-                    List<FI.AtividadeEntrevista.DML.Beneficiario> CPFAlreadyExist = bo.VerificarExistencia(model.CPF);
-                    bool CPFIsValid = bo.VerificarValidade(model.CPF);
-
-                    bool CPFFromSameCliente = CPFAlreadyExist.Any(obj => obj.IDCLIENTE == Id);
-
-                    if (!CPFIsValid || !CPFFromSameCliente && CPFAlreadyExist.Count > 0)
-                    {
-                        Response.StatusCode = 400;
-                        return Json(string.Join(Environment.NewLine, "CPF de beneficario(a) " + model.Nome + " é invalido"));
-                    }
-
                     if (!this.ModelState.IsValid)
                     {
                         List<string> erros = (from item in ModelState.Values
@@ -131,7 +105,8 @@ namespace WebAtividadeEntrevista.Controllers
 
                     });
                 }
-                return Json("Beneficiario alterado com sucesso");
+                return Json(new { Message = "Beneficiario alterado com sucesso", Success = true });
+
             }
             catch (Exception ex)
             {
@@ -140,11 +115,21 @@ namespace WebAtividadeEntrevista.Controllers
         }
 
         [HttpPost]
-        public JsonResult Excluir(int Id)
+        public JsonResult Excluir(List<int> IdList)
         {
-            BoBeneficiario bo = new BoBeneficiario();
-            bo.Excluir(Id);
-            return Json("Exclusão efetuada com sucesso");
+            try
+            {
+                BoBeneficiario bo = new BoBeneficiario();
+                foreach (var Id in IdList)
+                {
+                    bo.Excluir(Id);
+                }
+                return Json(new { Message = "Exclusão de beneficiario efetuada com sucesso", Success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
         }
 
         [HttpPost]
