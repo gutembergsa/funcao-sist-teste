@@ -32,7 +32,7 @@ function AlterarCPFCheckSetup(newClienteCPF, oldClienteCPF) {
     });
 }
 
-async function AlterarCPFCheck(BeneficiariosList, BeneficiariosToEditList) {
+async function AlterarCPFCheck(BeneficiariosList, BeneficiariosToEditList, CPFCliente) {
     CPFList = [
         ...CPFList, 
         ...BeneficiariosList
@@ -47,8 +47,7 @@ async function AlterarCPFCheck(BeneficiariosList, BeneficiariosToEditList) {
                 }
             })
     ]
-
-    const data = await fetchPostData("/Services/CheckCPFList", JSON.stringify(CPFList))
+    const data = await fetchPostData(`/Services/CheckCPFList?CPFCliente=${CPFCliente}`, JSON.stringify(CPFList))
     return data
 }
 
@@ -64,8 +63,7 @@ async function IncluirCPFCheck(BeneficiariosList, newClienteCPF) {
          Type: "cliente",
          CPF: newClienteCPF,
      })
-
-    const data = await fetchPostData("/Services/CheckCPFList", JSON.stringify(CPFList))
+    const data = await fetchPostData(`/Services/CheckCPFList?CPFCliente=${newClienteCPF}`, JSON.stringify(CPFList))
     return data
 }
 

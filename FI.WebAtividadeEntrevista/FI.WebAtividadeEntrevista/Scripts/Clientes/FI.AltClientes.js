@@ -8,14 +8,13 @@
             $(this).val(obj[this.id]);
         });
     }
-    
 
     AlterarCPFCheckSetup($('#formCadastro #CPF').value, obj.CPF)
 
     $('#formCadastro').submit(async function (e) {
         e.preventDefault();
         
-        const { isValid, Message } = await AlterarCPFCheck(BeneficiariosList_GLOBAL, BeneficiariosToEditList_GLOBAL)
+        const { isValid, Message } = await AlterarCPFCheck(BeneficiariosList_GLOBAL, BeneficiariosToEditList_GLOBAL, obj.CPF)
 
         if (!isValid) {
             ModalDialog("Ocorreu um erro", Message);
@@ -58,7 +57,6 @@
             if (Success) {
                 BeneficiariosToEditList_GLOBAL = []
                 message = message + `<br/>${rAlterarBeneficiario}`
-                // ModalDialog("Sucesso!", `${response}<br/>${rAlterarBeneficiario}`, backToPreviosPageModalCallback)    
             }
             else {
                 ModalDialog("Ocorreu um erro", rAlterarBeneficiario, backToPreviosPageModalCallback);  

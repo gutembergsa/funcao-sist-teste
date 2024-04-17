@@ -19,7 +19,7 @@ namespace WebAtividadeEntrevista.Controllers
         private (string, string) Type = ("cliente", "beneficiario");
 
         [HttpPost]
-        public JsonResult CheckCPFList(List<CPFValidatorModel> CPFList)
+        public JsonResult CheckCPFList(List<CPFValidatorModel> CPFList, string CPFCliente)
         {
             if (CPFList != null)
             {
@@ -30,29 +30,36 @@ namespace WebAtividadeEntrevista.Controllers
                 foreach (var CPFData in CPFList)
                 {
                     bool CPFIsValid = this.VerificarValidade(CPFData.CPF);
+                    bool CPFAlreadyExistInClienteList = boCliente.VerificarExistencia(CPFData.CPF);
+
+                    Response.StatusCode = 400;
 
                     if (CPFData.Type == Type.Item1)
                     {
-                        bool CPFAlreadyExist = boCliente.VerificarExistencia(CPFData.CPF);
-
-                        if (!CPFIsValid || CPFAlreadyExist)
+                        if (!CPFIsValid || CPFAlreadyExistInClienteList)
                         {
-                            Response.StatusCode = 400;
                             return Json(new { isValid = false, Message = "CPF do cliente é inválido" });
                         }
                     }
 
                     if (CPFData.Type == Type.Item2)
                     {
-                        bool CPFAlreadyExist = boBeneficiario.VerificarExistencia(CPFData.CPF, true);
-                        if (!CPFIsValid)
+
+                        if (CPFCliente == CPFData.CPF || CPFAlreadyExistInClienteList)
                         {
-                            Response.StatusCode = 400;
+                            return Json(new { isValid = false, Message = "CPF de beneficiario não pode ser igual ao de um cliente" });
+                        }
+
+                        bool CPFAlreadyExistInBeneficiariosList = boBeneficiario.VerificarExistencia(CPFData.CPF, true);
+
+                        if (!CPFIsValid || CPFAlreadyExistInBeneficiariosList)
+                        {
                             return Json(new { isValid = false, Message = "CPF do beneficiario é inválido" });
                         }
                     }
                 }
             }
+            Response.StatusCode = 200;
             return Json(new { isValid = true });
         }
 
