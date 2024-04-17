@@ -5,7 +5,7 @@
 -   [Melhorias](#improvements)
 
 ## [Sobre o projeto <a name="about"/>](#list)
-Este projeto é um teste de desenvolvimento fullstack feito com Dotnet 4.6.2, Razor e jQuery.
+Este projeto é um teste de desenvolvimento fullstack feito com .Net 4.6.2, Razor pages e jQuery.
 <!-- toc -->
 
 ## [Como executar <a name="exec"/>](#list)
