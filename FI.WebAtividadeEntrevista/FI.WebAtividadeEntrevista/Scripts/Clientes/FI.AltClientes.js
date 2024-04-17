@@ -38,11 +38,13 @@
 
         const { 
             Success = undefined, 
-            Message: r = undefined 
+            Message: response = undefined 
         } = await ClienteAlterar(formData)
 
         if (!Success) return 
 
+        let message = response
+        let hasError = false
         const BeneficiariosToIncludeListFiltered = BeneficiariosList_GLOBAL.filter((value => value.IDCLIENTE === undefined))
         const BeneficiariosToEditsListFiltered = BeneficiariosList_GLOBAL.filter(({ Id }) =>{
             return (
@@ -53,37 +55,43 @@
 
         if (BeneficiariosToEditsListFiltered.length) {
             const { Message: rAlterarBeneficiario, Success } = await BeneficiarioAlterar(BeneficiariosToEditsListFiltered, idCliente)
-            if (rAlterarBeneficiario?.length && Success) {
+            if (Success) {
                 BeneficiariosToEditList_GLOBAL = []
-                ModalDialog("Sucesso!", `${r}<br/>${rAlterarBeneficiario}`, backToPreviosPageModalCallback)    
+                message = message + `<br/>${rAlterarBeneficiario}`
+                // ModalDialog("Sucesso!", `${response}<br/>${rAlterarBeneficiario}`, backToPreviosPageModalCallback)    
             }
             else {
-                ModalDialog("Ocorreu um erro", rAlterarBeneficiario, backToPreviosPageModalCallback);                        
+                ModalDialog("Ocorreu um erro", rAlterarBeneficiario, backToPreviosPageModalCallback);  
+                hasError = true                      
             }
        }
         if (BeneficiariosToIncludeListFiltered.length) {
             const { Message: rIncluirBeneficiario, Success } = await BeneficiarioIncluir(BeneficiariosToIncludeListFiltered, idCliente)
-            if (rIncluirBeneficiario?.length && Success) {
-                ModalDialog("Sucesso!", `${r}<br/>${rIncluirBeneficiario}`, backToPreviosPageModalCallback)    
+            if (Success) {
+                message = message + `<br/>${rIncluirBeneficiario}`
             }
             else {
                 ModalDialog("Ocorreu um erro", rIncluirBeneficiario, backToPreviosPageModalCallback);
+                hasError = true                      
             }
         }
         if (BeneficiariosToExcludeList_GLOBAL.length) {
             const { Message: rExcluirBeneficiario, Success } = await BeneficiarioExcluir(BeneficiariosToExcludeList_GLOBAL)
             if (rExcluirBeneficiario?.length && Success) {
+                message = message + `<br/>${rExcluirBeneficiario}`
                 BeneficiariosToExcludeList_GLOBAL = []
                 targetProxy.BeneficiariosList_GLOBAL = BeneficiariosList_GLOBAL ;
-                ModalDialog("Sucesso!", `${r}<br/>${rExcluirBeneficiario}`, backToPreviosPageModalCallback);
             }
             else {
                 ModalDialog("Ocorreu um erro", rExcluirBeneficiario);
+                hasError = true                      
             }
         }
         if (!BeneficiariosToExcludeList_GLOBAL.length && !BeneficiariosToEditsListFiltered.length && !BeneficiariosToIncludeListFiltered.length){
             BeneficiariosToEditList_GLOBAL = []
-            ModalDialog("Sucesso!", r, backToPreviosPageModalCallback);
+        }
+        if (!hasError) {
+            ModalDialog("Sucesso!", message, backToPreviosPageModalCallback);
         }
     })
 })

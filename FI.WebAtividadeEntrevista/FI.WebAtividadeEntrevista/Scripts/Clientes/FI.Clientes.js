@@ -36,21 +36,24 @@ $(document).ready(function () {
 
         if (!Id) return 
 
+        let message = response
+        let hasError = false
+
         if (BeneficiariosList_GLOBAL .length) {
             const { Message: rIncluirBeneficiario, Success } = await BeneficiarioIncluir(BeneficiariosList_GLOBAL , Id)
-            if (rIncluirBeneficiario?.length && Success) {
-                ModalDialog("Sucesso!", `${response}<br/>${rIncluirBeneficiario}`, backToPreviosPageModalCallback)    
-            }
-            else {
+            message = message + `<br/>${rIncluirBeneficiario}`
+
+            if (!Success) {
                 ModalDialog("Ocorreu um erro", rIncluirBeneficiario, backToPreviosPageModalCallback);
             }
         }
         if (BeneficiariosToExcludeList_GLOBAL.length) {
             const { Message: rExcluirBeneficiario, Success } = await BeneficiarioExcluir(BeneficiariosToExcludeList_GLOBAL)
-            if (rExcluirBeneficiario?.length && Success) {
+            message = message + `<br/>${rExcluirBeneficiario}`
+
+            if (Success) {
                 BeneficiariosToExcludeList_GLOBAL = []
                 targetProxy.BeneficiariosList_GLOBAL = BeneficiariosList_GLOBAL ;
-                ModalDialog("Sucesso!", `${response}<br/>${rExcluirBeneficiario}`, backToPreviosPageModalCallback);
             }
             else {
                 ModalDialog("Ocorreu um erro", rExcluirBeneficiario, backToPreviosPageModalCallback);
@@ -58,7 +61,9 @@ $(document).ready(function () {
         }
         if (!BeneficiariosToExcludeList_GLOBAL.length && !BeneficiariosList_GLOBAL .length){
             BeneficiariosToEditList_GLOBAL = []
-            ModalDialog("Sucesso!", response, backToPreviosPageModalCallback);
         }
+        if (!hasError) {
+            ModalDialog("Sucesso!", message, backToPreviosPageModalCallback);
+        }    
     })    
 })
