@@ -15,5 +15,6 @@ Execute o arquivo FI.WebAtividadeEntrevista através do VS e o projeto deverá s
 ## [O que teria feito diferente com mais tempo? <a name="improvements"/>](#list)
 -   Melhorar o uso do Razor. Como esta foi minha primeira experiência com ele, sinto que deixei de aproveitar muito de seu potencial, assim como boas práticas relacionadas à renderização de telas com Razor.
 -   Aumentar a reutilização de funções no jQuery e reduzir a repetitividade do código utilizando o princípio DRY.
+-   Adicionar testes no frontend e no backend.
 -   Melhorar a acessibilidade dos formulários com ARIA attributes, fazer melhor uso das validações padrão do navegador para campos especializados.
 -   Melhorar as procedures de beneficiários que salvam vários itens de uma vez (Incluir, Alterar e Excluir) para salvar todos de uma vez e não chamar a procedure várias vezes.
